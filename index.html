@@ -10,15 +10,30 @@
 	<link rel="stylesheet" href="src/css/layout.css">
 </head>
 <body>
-<div class="g-popbg-mask">
-	<div class="popup-content move-animate">
-		<h4 class="pop-title">删除成功</h4>
-		<p class="pop-text">您的删除已经完成了</p>
-		<div class="pop-btns sure">
-			<button class="pop-button">确认</button>
-			<button class="pop-button">删除</button>
-		</div>
-	</div>
-</div>
+<button>aaaa</button>
+<button>bbbb</button>
+<button>cccc</button>
+<script src="src/js/popup-layer.js"></script>
+<script>
+	var btns = document.querySelectorAll("button");
+	btns[2].onclick = function () {
+		var _this = this;
+		var pop = new PopupLayer({
+			title:_this.innerHTML
+		});
+		pop.rander();
+		pop.active();
+	};
+	btns[0].onclick = function () {
+		var _this = this;
+		var pop = new PopupLayer({
+			title:_this.innerHTML,
+			content:"aaabbbababaab",
+			choose:true
+		});
+		pop.rander();
+		console.log(pop.active());
+	}
+</script>
 </body>
 </html>

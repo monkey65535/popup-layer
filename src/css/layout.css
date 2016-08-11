@@ -35,7 +35,7 @@ body {
     padding: 30px 0; }
   .popup-content .pop-btns {
     width: 60%;
-    margin: 20px auto;
+    margin: 0px auto 20px auto;
     overflow: hidden;
     font-size: 0;
     text-align: center; }
@@ -47,29 +47,44 @@ body {
       border-radius: 3px;
       border: none;
       font-size: 14px;
-      color: #FFF; }
+      color: #FFF;
+      margin-top: 30px; }
     .popup-content .pop-btns .pop-button {
       display: block;
       float: left;
-      margin-left: 34px; }
+      margin-left: 34px;
+      margin-top: 0; }
 
 .move-animate {
   -webkit-animation: move 0.25s ease-in;
   -o-animation: move 0.25s ease-in;
   animation: move 0.25s ease-in; }
 
+.leave-animate {
+  -webkit-animation: leave 0.25s ease-in;
+  -o-animation: leave 0.25s ease-in;
+  animation: leave 0.25s ease-in; }
+
+.block-animate {
+  -webkit-animation: block 0.25s ease-in;
+  -o-animation: block 0.25s ease-in;
+  animation: block 0.25s ease-in; }
+
 @keyframes move {
   from {
-    -webkit-transform: translate(-50%, -55%);
-    -moz-transform: translate(-50%, -55%);
-    -ms-transform: translate(-50%, -55%);
-    -o-transform: translate(-50%, -55%);
-    transform: translate(-50%, -55%);
     opacity: 0; }
   to {
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
     opacity: 1; } }
+@keyframes leave {
+  from {
+    opacity: 1; }
+  to {
+    opacity: 0;
+    display: none; } }
+@keyframes block {
+  0% {
+    opacity: 1;
+    display: block; }
+  100% {
+    opacity: 0;
+    display: none; } }

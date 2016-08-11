@@ -50,7 +50,7 @@ body{
   }
   .pop-btns{
     width: 60%;
-    margin: 20px auto;
+    margin: 0px auto 20px auto;
     overflow: hidden;
     font-size: 0;
     text-align: center;
@@ -63,24 +63,49 @@ body{
       border: none;
       font-size: 14px;
       color: #FFF;
+      margin-top: 30px;
     }
     .pop-button{
       display: block;
       float: left;
       margin-left: 34px;
+      margin-top: 0;
     }
   }
 }
 .move-animate{
   @include ani(move .25s ease-in);
 }
+.leave-animate{
+  @include ani(leave .25s ease-in);
+}
+.block-animate{
+  @include ani(block .25s ease-in);
+}
 @keyframes move {
   from{
-    @include trans(translate(-50%, -55%));
     opacity: 0;
   }
   to{
-    @include trans(translate(-50%, -50%));
     opacity: 1;
+  }
+}
+@keyframes leave {
+  from{
+    opacity: 1;
+  }
+  to{
+    opacity: 0;
+    display: none;
+  }
+}
+@keyframes block {
+  0%{
+    opacity: 1;
+    display: block;
+  }
+  100%{
+    opacity: 0;
+    display: none;
   }
 }
