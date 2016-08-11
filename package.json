@@ -1,0 +1,24 @@
+{
+  "name": "popup-layer",
+  "version": "1.0.0",
+  "description": "一个轻巧的弹出层插件",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monkey65535/popup-layer.git"
+  },
+  "author": "dilidili",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monkey65535/popup-layer/issues"
+  },
+  "homepage": "https://github.com/monkey65535/popup-layer#readme",
+  "devDependencies": {
+    "browser-sync": "^2.14.0",
+    "gulp": "^3.9.1",
+    "gulp-ruby-sass": "^2.0.6"
+  }
+}
