@@ -1,0 +1,75 @@
+body {
+  font-family: "Microsoft YaHei UI"; }
+
+.g-popbg-mask {
+  position: fixed;
+  background: rgba(51, 51, 51, 0.8);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0; }
+
+.popup-content {
+  width: 400px;
+  height: auto;
+  background: #fff;
+  border-radius: 3px;
+  padding: 45px 40px 0 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  color: #616161; }
+  .popup-content .pop-title {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center; }
+  .popup-content .pop-text {
+    font-size: 16px;
+    line-height: 23px;
+    padding: 30px 0; }
+  .popup-content .pop-btns {
+    width: 60%;
+    margin: 20px auto;
+    overflow: hidden;
+    font-size: 0;
+    text-align: center; }
+    .popup-content .pop-btns button {
+      background-color: #4dbbee;
+      padding: 8px 25px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      border: none;
+      font-size: 14px;
+      color: #FFF; }
+    .popup-content .pop-btns .pop-button {
+      display: block;
+      float: left;
+      margin-left: 34px; }
+
+.move-animate {
+  -webkit-animation: move 0.25s ease-in;
+  -o-animation: move 0.25s ease-in;
+  animation: move 0.25s ease-in; }
+
+@keyframes move {
+  from {
+    -webkit-transform: translate(-50%, -55%);
+    -moz-transform: translate(-50%, -55%);
+    -ms-transform: translate(-50%, -55%);
+    -o-transform: translate(-50%, -55%);
+    transform: translate(-50%, -55%);
+    opacity: 0; }
+  to {
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    opacity: 1; } }

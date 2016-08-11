@@ -1,0 +1,86 @@
+//mixin
+$white: #fff;
+$mask-bg: rgba(51, 51, 51, 0.8);
+@mixin trans($num){
+  -webkit-transform: $num;
+  -moz-transform: $num;
+  -ms-transform: $num;
+  -o-transform: $num;
+  transform: $num;
+}
+@mixin ani($act){
+  -webkit-animation:$act;
+  -o-animation:$act;
+  animation:$act;
+}
+//sass
+body{
+  font-family: "Microsoft YaHei UI";
+}
+.g-popbg-mask {
+  position: fixed;
+  background: $mask-bg;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.popup-content {
+  width: 400px;
+  height: auto;
+  background: $white;
+  border-radius: 3px;
+  padding: 45px 40px 0 40px;
+  position: absolute;
+  top:50%;
+  left: 50%;
+  @include trans(translate(-50%, -50%));
+  overflow: hidden;
+  color: #616161;
+  .pop-title {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+  }
+  .pop-text{
+    font-size: 16px;
+    line-height: 23px;
+    padding: 30px 0;
+  }
+  .pop-btns{
+    width: 60%;
+    margin: 20px auto;
+    overflow: hidden;
+    font-size: 0;
+    text-align: center;
+    button{
+      background-color: #4dbbee;
+      padding: 8px 25px;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      border: none;
+      font-size: 14px;
+      color: #FFF;
+    }
+    .pop-button{
+      display: block;
+      float: left;
+      margin-left: 34px;
+    }
+  }
+}
+.move-animate{
+  @include ani(move .25s ease-in);
+}
+@keyframes move {
+  from{
+    @include trans(translate(-50%, -55%));
+    opacity: 0;
+  }
+  to{
+    @include trans(translate(-50%, -50%));
+    opacity: 1;
+  }
+}
