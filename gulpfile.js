@@ -22,7 +22,7 @@ gulp.task('sassWacth',function () {
 gulp.task('jsmin',function () {
     gulp.src('src/js/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('dist/js'));
+        .pipe(gulp.dest('dist/js/'));
 });
 gulp.task('cssmin',function () {
     gulp.src('src/css/*.css')
