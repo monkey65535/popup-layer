@@ -10,11 +10,23 @@ function PopupLayer(popJson) {
     var setting = {
         title: "这是一个title",
         content: "",
-        choose: false
+        choose: false,
+        fnSucc: function () {
+        },
+        fnFail: function () {
+        }
     };
     this.config = extened(setting, popJson);
     this.return = null;
     this.rand = false;
+    //获取元素
+    this.body = document.querySelector("body");
+    this.randerBg = null;
+    this.popCon = null;
+    this.btnCon = null;
+    this.btns = null;
+    //调用
+    this.rander();
 }
 PopupLayer.prototype = {
     construct: PopupLayer,
@@ -52,51 +64,41 @@ PopupLayer.prototype = {
         body.appendChild(randerDom);
         this.rand = true;
         this.return = null;
+        this.active();
     },
     active: function () {
         var _this = this;
         if (this.rand) {
-            var body = document.querySelector("body");
-            var randerBg = document.querySelector(".g-popbg-mask");
-            var popCon = randerBg.querySelector(".popup-content");
-            var btnCon = popCon.querySelector(".g-popbg-mask .popup-content .pop-btns");
-            var btns = btnCon.children;
-            if (this.config.choose) {
-                //这个时候是两个按钮，点击要输出true或者false值
-                for(var i=0;i<btns.length;i++){
-                    btns[i].addEventListener('click',function () {
-                        removeClass(popCon, "move-animate");
-                        addClass(popCon, "leave-animate");
-                        addClass(popCon,"block-animate");
-                        _this.return = this.dataset.bool;
-                        setTimeout(function () {
-                            //动画完成之后删除这个节点
-                            body.removeChild(randerBg);
-                        }, 250);
-                        //修改this.rand属性
-                        _this.rand = false;
-                        return _this.return;
-                    });
-                }
-            } else {
-                //这个时候是一个按钮，直接关闭就可以了
-                for (var i = 0; i < btns.length; i++) {
-                    btns[i].addEventListener('click', function () {
-                        /*popCon.className += " leave-animate";*/
-                        removeClass(popCon, "move-animate");
-                        addClass(popCon, "leave-animate");
-                        addClass(popCon,"block-animate");
-                        setTimeout(function () {
-                            //动画完成之后删除这个节点
-                            body.removeChild(randerBg);
-                        }, 250);
-                        //修改this.rand属性
-                        _this.rand = false;
-                    });
-                }
+            this.randerBg = document.querySelector(".g-popbg-mask");
+            this.popCon = this.randerBg.querySelector(".popup-content");
+            this.btnCon = this.popCon.querySelector(".g-popbg-mask .popup-content .pop-btns");
+            this.btns = this.btnCon.children;
+            //这个时候是两个按钮，点击要输出true或者false值
+            for (var i = 0; i < this.btns.length; i++) {
+                this.btns[i].addEventListener('click', function () {
+                    _this.return = null;
+                    removeClass(_this.popCon, "move-animate");
+                    addClass(_this.popCon, "leave-animate");
+                    addClass(_this.popCon, "block-animate");
+                    if (_this.config.choose) {
+                        if (this.dataset.bool) {
+                            _this.config.fnSucc(this.dataset.bool);
+                        } else {
+                            _this.config.fnFail(this.dataset.bool);
+                        }
+                    }
+                    //动画完成之后删除这个节点
+                    setTimeout(function () {
+                        _this.body.removeChild(_this.randerBg);
+                    }, 250);
+                    _this.rand = false;
+                });
             }
         } else {
             return;
+        }
+        if (this.return) {
+            return this.return;
         }
     }
 };
@@ -141,18 +143,22 @@ function addClass(obj, classN) {
 
 //removeClass
 function removeClass(obj, classN) {
-    var objClass = obj.className;
-    if (objClass.indexOf(classN) == -1) {
+    if (obj && classN) {
+        var objClass = obj.className;
+        if (objClass.indexOf(classN) == -1) {
+            return;
+        }
+        //使用空格分隔字符串
+        var classArr = objClass.split(" ");
+        //循环数组，然后删除对应的className，在用空格去拼接字符串
+        for (var i = 0; i < classArr.length; i++) {
+            if (classArr[i] === classN) {
+                classArr.splice(i, 1);
+                i--;
+            }
+        }
+        obj.className = classArr.join(" ");
+    } else {
         return;
     }
-    //使用空格分隔字符串
-    var classArr = objClass.split(" ");
-    //循环数组，然后删除对应的className，在用空格去拼接字符串
-    for (var i = 0; i < classArr.length; i++) {
-        if (classArr[i] === classN) {
-            classArr.splice(i, 1);
-            i--;
-        }
-    }
-    obj.className = classArr.join(" ");
 }

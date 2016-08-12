@@ -7,7 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 	<title>index</title>
 	<link rel="stylesheet" href="src/css/reset.css">
-	<link rel="stylesheet" href="src/css/layout.css">
+	<link rel="stylesheet" href="src/css/popup-layer.css">
 </head>
 <body>
 <button>aaaa</button>
@@ -21,18 +21,20 @@
 		var pop = new PopupLayer({
 			title:_this.innerHTML
 		});
-		pop.rander();
-		pop.active();
 	};
 	btns[0].onclick = function () {
 		var _this = this;
 		var pop = new PopupLayer({
 			title:_this.innerHTML,
 			content:"aaabbbababaab",
-			choose:true
+			choose:true,
+			fnSucc:function (o) {
+				console.log(o);
+			},
+			fnFail:function (o) {
+				alert(o);
+			}
 		});
-		pop.rander();
-		console.log(pop.active());
 	}
 </script>
 </body>
