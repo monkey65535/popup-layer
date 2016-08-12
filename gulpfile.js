@@ -4,6 +4,8 @@
 var gulp = require('gulp');
 var rubySass = require('gulp-ruby-sass');
 var browserSync = require('browser-sync');
+var uglify = require('gulp-uglify');
+var cssmin= require('gulp-minify-css');
 
 //sass编译
 gulp.task('sass',function () {
@@ -16,6 +18,16 @@ gulp.task('sassWacth',function () {
     gulp.watch('./src/sass/*.scss',function () {
         gulp.run('sass');
     })
+});
+gulp.task('jsmin',function () {
+    gulp.src('src/js/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/js'));
+});
+gulp.task('cssmin',function () {
+    gulp.src('src/css/*.css')
+        .pipe(cssmin())
+        .pipe(gulp.dest('dist/css'));
 });
 
 //自动刷新页面
